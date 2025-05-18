@@ -1,0 +1,75 @@
+body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9fb;
+      padding-top: 60px;
+    }
+    .gradient-logo-home {
+    display: inline-block;
+    background: #f9f9fb;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    font-size: 2.5rem;
+    text-shadow: none; 
+    filter: none;
+    }
+
+
+    .hero {
+      background: linear-gradient(to right, #3b82f6, #8b5cf6);
+      color: white;
+      padding: 80px 0;
+    }
+    .hero h1 {
+      font-weight: 800;
+      font-size: 2.6rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      margin-top: 1rem;
+      opacity: 0.9;
+    }
+    .feature-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+    }
+    .section-light {
+      background-color: #fff;
+    }
+    .section-dark {
+      background-color: #f1f5f9;
+    }
+    .feature-card {
+      padding: 30px;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.03);
+      transition: 0.3s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+    }
+    .btn-gradient {
+      background: linear-gradient(90deg, #8b5cf6, #3b82f6);
+      color: white;
+      border: none;
+    }
+    .btn-gradient:hover {
+      opacity: 0.9;
+    }
+    .hero h1, .hero p {
+    text-shadow: 0 2px 4px rgba(255, 255, 255, 0.2);
+    }
+    .hero img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 16px;
+    }
+    .hero {
+    animation: fadeIn 1s ease-in-out;
+    }
+    @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+    }

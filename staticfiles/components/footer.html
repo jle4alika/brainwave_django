@@ -1,0 +1,27 @@
+{% load static %}
+
+<!-- components/footer.html -->
+<footer class="footer bg-light border-top mt-auto py-4">
+  <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+
+    <!-- Лого и текст -->
+    <div class="mb-3 mb-md-0 d-flex align-items-center">
+      <img src="{% static "images/logo.png" %}" alt="Logo" width="24" height="24" class="me-2">
+      <span class="fw-bold text-primary">BrainWave</span>
+    </div>
+
+    <!-- Меню -->
+    <ul class="list-unstyled d-flex gap-4 mb-3 mb-md-0">
+      <li><a href="/about/" class="text-decoration-none text-dark">О нас</a></li>
+      <li><a href="/privacy/" class="text-decoration-none text-dark">Политика</a></li>
+      <li><a href="/contacts/" class="text-decoration-none text-dark">Контакты</a></li>
+    </ul>
+
+    <!-- Соцсети -->
+    <div class="d-flex gap-3">
+      <a href="https://vk.com" target="_blank" class="text-dark"><i class="bi bi-vk fs-5"></i></a>
+      <a href="https://t.me" target="_blank" class="text-dark"><i class="bi bi-telegram fs-5"></i></a>
+      <a href="https://github.com" target="_blank" class="text-dark"><i class="bi bi-github fs-5"></i></a>
+    </div>
+  </div>
+</footer>

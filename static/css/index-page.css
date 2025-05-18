@@ -1,0 +1,62 @@
+body {
+  padding-top: 80px;
+  background-color: #fbfaff; 
+}
+
+
+:root {
+  --accent-violet: rgb(139, 92, 246);
+  --accent-blue: rgb(14, 165, 233);
+}
+
+
+h2 span {
+  color: var(--accent-violet);
+}
+
+
+.progress-bar {
+  background-color: var(--accent-blue) !important;
+  height: 8px;
+  border-radius: 4px;
+}
+
+
+.card {
+  border-radius: 16px;
+  border: none;
+}
+
+
+.card i {
+  font-size: 1.5rem;
+  color: var(--accent-violet);
+}
+
+
+a {
+  color: var(--accent-blue);
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+ul.list-unstyled li strong {
+  display: inline-block;
+  margin-bottom: 2px;
+}
+
+.card.text-decoration-none:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+a.text-decoration-none:hover .card {
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+  transition: all 0.2s ease-in-out;
+}

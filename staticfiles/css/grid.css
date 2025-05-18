@@ -1,0 +1,14 @@
+#mask-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  mask-image: radial-gradient(circle 100px at center, black 0%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle 100px at center, black 0%, transparent 100%);
+  background: 
+    linear-gradient(45deg, rgba(0, 0, 0, 0.05) 60%, transparent 60%),
+    linear-gradient(-45deg, rgba(0, 0, 0, 0.05) 60%, transparent 60%),
+    linear-gradient(45deg, transparent 100%, rgba(0, 0, 0, 0.05) 100%),
+    linear-gradient(-45deg, transparent 100%, rgba(0, 0, 0, 0.05) 100%);
+  background-size: 20px 20px;
+  z-index: 0;
+}

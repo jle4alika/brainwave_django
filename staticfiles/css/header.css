@@ -1,0 +1,73 @@
+.custom-navbar {
+  background-color: rgb(251, 250, 255);
+  border-bottom: 1px solid rgb(226, 232, 240);
+  height: 73px;
+  z-index: 1000;
+}
+
+.gradient-logo {
+  background: linear-gradient(90deg, rgb(139, 92, 246), rgb(14, 165, 233));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.navbar .nav-link {
+  font-weight: 500;
+  color: #212529;
+  padding: 8px 16px;
+}
+
+.navbar .nav-link:hover {
+  color: rgb(14, 165, 233);
+}
+
+@media (min-width: 992px) {
+  .offcanvas {
+    display: none !important;
+  }
+}
+
+
+#mobileNav {
+  background-color: rgb(251, 250, 255); 
+  padding: 1rem 0;
+  text-align: center;
+  border-top: 1px solid rgb(226, 232, 240);
+}
+
+#mobileNav .nav-link {
+  padding: 0.5rem 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.animate-dropdown {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  display: block;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.dropdown-menu.show.animate-dropdown {
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.avatar-btn:hover .bg-light {
+  background-color: #e2e6ea !important;
+}
+.fw-bold {
+  background: linear-gradient(90deg, rgb(139, 92, 246), rgb(14, 165, 233));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+}

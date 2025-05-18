@@ -1,0 +1,53 @@
+{% load static %}
+
+<!-- components/header.html -->
+<nav class="navbar navbar-expand-lg fixed-top custom-navbar">
+  <div class="container justify-content-between align-items-center">
+
+    <!-- Логотип -->
+    <a class="navbar-brand d-flex align-items-center fw-bold me-auto" href="">
+      <img src="{% static "images/logo.png" %}" alt="BrainWave Logo" width="32" height="32" class="me-2 logo-img" />
+      <span class="gradient-logo">BrainWave</span>
+    </a>
+
+    <!-- Центрированное меню (только на больших экранах) -->
+    <div class="d-none d-lg-flex justify-content-center flex-grow-1">
+      <ul class="navbar-nav gap-4">
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" href="">
+            <i class="bi bi-house me-2"></i> Главная
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" href="/categories/">
+            <i class="bi bi-journal-bookmark me-2"></i> Курсы
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" href="/profile/">
+            <i class="bi bi-person-badge me-2"></i> Достижения
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Аватарка -->
+    <a href="/profile/" class="btn btn-light rounded-circle d-none d-lg-flex align-items-center justify-content-center avatar-btn">
+      <img src="{% static "images/avatar.png" %}" alt="Avatar" class="rounded-circle" width="28" height="28" />
+    </a>
+
+    <!-- Бургер-меню -->
+    <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+
+  <!-- Мобильное меню -->
+  <div class="collapse navbar-collapse d-lg-none" id="mobileNav">
+    <ul class="navbar-nav text-center py-3 mobile-nav">
+      <li class="nav-item"><a class="nav-link" href="">Главная</a></li>
+      <li class="nav-item"><a class="nav-link" href="/categories/">Курсы</a></li>
+      <li class="nav-item"><a class="nav-link" href="/profile/">Достижения</a></li>
+    </ul>
+  </div>
+</nav>

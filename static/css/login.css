@@ -1,0 +1,44 @@
+body {
+      background-color: #faf9ff;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .gradient-logo {
+      background: linear-gradient(90deg, rgb(139, 92, 246), rgb(14, 165, 233));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .login-container {
+      max-width: 430px;
+      background-color: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+
+    .btn-purple {
+      background-color: rgb(139, 92, 246);
+      color: white;
+      font-weight: 500;
+    }
+
+    .btn-purple:hover {
+      background-color: rgb(124, 86, 224);
+    }
+
+    a {
+      color: rgb(139, 92, 246);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .form-control:focus {
+      border-color: rgb(139, 92, 246);
+      box-shadow: 0 0 0 0.2rem rgba(139, 92, 246, 0.25);
+    }

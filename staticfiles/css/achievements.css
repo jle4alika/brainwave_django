@@ -1,0 +1,32 @@
+.achievement-card {
+      width: 250px;
+      min-height: 150px;
+      flex: 0 0 auto;
+      transition: transform 0.2s ease;
+}
+.achievement-card:hover {
+    transform: translateY(-3px);
+}
+.achievements-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.achievement-earned {
+    border: 2px solid #3b82f6;
+    color: #1e293b;
+    background-color: #f0f8ff;
+}
+
+.achievement-locked {
+    border: 2px solid #d1d5db;
+    color: #9ca3af;
+    background-color: #f8f9fa;
+}
+
+.achievement-card img {
+    width: 50px;
+    height: 50px;
+}
