@@ -22,7 +22,7 @@ Brainwave — это веб-приложение, построенное на Dj
 Склонируйте репозиторий:
 
 ```bash
-git clone https://github.com/jle4alika/brainwave_django.git
+https://github.com/jle4alika/brainwave_django.git
 ```
 
 Откройте папку в VS Code:
