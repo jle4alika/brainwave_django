@@ -35,6 +35,7 @@
     {% if next_lesson %}
     <a href="/lesson/?course_title={{ lesson.course_title }}&title={{ lesson.title }}&number={{ next_lesson.number }}" class="btn btn-primary mt-4">Следующий урок</a>
     {% endif %}
+    <a href="/course/?title={{ lesson.course_title }}" class="btn btn-primary mt-4">Назад к курсу</a>
   </div>
   
 

@@ -41,7 +41,7 @@
 
         <!-- Список курсов -->
     <div class="row row-cols-1 row-cols-md-3 g-4" id="courseList">
-               {% for category in categories %}
+      {% for category in categories %}
       <div class="col course-card" data-category="{{category.category}}">
         <div class="card shadow-sm h-100">
           <img src="/media/{{category.image}}" class="card-img-top" alt="{{category.title}}">
@@ -49,8 +49,12 @@
             <h5>{{category.title}}</h5>
             <p class="text-muted">{{category.description}}</p>
             <div class="mt-auto">
-              <p class="text-muted small mb-2">3 урока · {{category.exp}} XP</p>
-              <a href="/course/?title={{ category.title }}" class="btn btn-primary w-100">Записаться</a>
+              <p class="text-muted small mb-2">{{ category.lessons_count }} урока · {{category.exp}} XP</p>
+              {% if not category.user_course %}
+                <a href="/course/?title={{ category.title }}" class="btn btn-primary w-100">Записаться</a>
+              {% else %}
+                <a href="/course/?title={{ category.title }}" class="btn btn-secondary btn-primary w-100">Продолжить обучение</a>
+              {% endif %}
             </div>
           </div>
         </div>

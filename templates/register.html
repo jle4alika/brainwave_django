@@ -32,39 +32,50 @@
         <div class="mb-3">
           <label for="{{ form.full_name.auto.id }}" class="form-label fw-semibold">{{ form.full_name.label }}</label>
           {{ form.full_name }}
-          {% comment %} <input type="text" class="form-control" placeholder="{{ form.full_name.placeholder }}"> {% endcomment %}
+                {% if form.full_name.errors %}
+          {% for error in form.full_name.errors %}
+              <div class="invalid-feedback" style="display: block;">{{ error|escape }}</div>
+          {% endfor %}
+          {% endif %}
         </div>
         <div class="mb-3">
           <label for="{{ form.username.auto.id }}" class="form-label fw-semibold">{{ form.username.label }}</label>
           {{ form.username }}
-          {% comment %} <input type="text" class="form-control" placeholder="{{ form.username.placeholder }}"> {% endcomment %}
+          {% if form.username.errors %}
+          {% for error in form.username.errors %}
+              <div class="invalid-feedback" style="display: block;">{{ error|escape }}</div>
+          {% endfor %}
+          {% endif %}
         </div>
         <div class="mb-3">
           <label for="{{ form.email.auto.id }}" class="form-label fw-semibold">{{ form.email.label }}</label>
           {{ form.email }}
-          {% comment %} <input type="email" class="form-control" placeholder="{{ form.email.placeholder }}"> {% endcomment %}
+          {% if form.email.errors %}
+          {% for error in form.email.errors %}
+              <div class="invalid-feedback" style="display: block;">{{ error|escape }}</div>
+                        {% endfor %}
+          {% endif %}
         </div>
         <div class="mb-4">
           <label for="{{ form.password1.auto.id }}" class="form-label fw-semibold">{{ form.password1.label }}</label>
           {{ form.password1 }}
-          {% comment %} <input type="password" class="form-control" placeholder="{{ form.password.placeholder }}"> {% endcomment %}
+          {% if form.password1.errors %}
+          {% for error in form.password1.errors %}
+              <div class="invalid-feedback" style="display: block;">{{ error|escape }}</div>
+                        {% endfor %}
+          {% endif %}
         </div>
         <div class="mb-4">
           <label for="{{ form.password2.auto.id }}" class="form-label fw-semibold">{{ form.password2.label }}</label>
           {{ form.password2 }}
-          {% comment %} <input type="password" class="form-control" placeholder="{{ form.password.placeholder }}"> {% endcomment %}
+          {% if form.password2.errors %}
+          {% for error in form.password2.errors %}
+              <div class="invalid-feedback" style="display: block;">{{ error|escape }}</div>
+                        {% endfor %}
+          {% endif %}
+
         </div>
         <button type="submit" class="btn btn-primary w-100 d-flex justify-content-center align-items-center gap-2">Зарегистрироваться</button>
-                                             <!-- Display error/success messages -->
-                        {% if form.errors %}
-                              {% for field in form %}
-                                   {% for error in field.errors %}
-                                       <div class="alert alert-primary" role="alert">
-                                            <label class="alert">{{field.label}} {{ error|escape }}</label>
-                                       </div>
-                                   {% endfor %}
-                              {% endfor %}
-                        {% endif %}
       </form>
 
       <div class="text-center mt-3">

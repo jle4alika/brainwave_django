@@ -50,7 +50,10 @@
       </div>
     </div>
     {% endfor %}
-
+    <input type="hidden" name="course_title" value="{{ test.course_title }}">
+    <input type="hidden" name="title" value="{{ test.title }}">
+    <input type="hidden" name="number" value="{{ test.number }}">
+            
       <div class="d-flex justify-content-end">
         <button type="submit" class="btn btn-primary">Отправить ответы</button>
     </div>
@@ -58,35 +61,6 @@
 
   <div id="result" class="result-box mt-4 d-none"></div>
 </div>
-
-<!-- Скрипт логики теста -->
- <script>
-  {% comment %}
-  document.getElementById('quizForm').addEventListener('submit', function (e) {
-     e.preventDefault();
-
-    const total = {{ questions[-1].number}};
-    let score = 0;
-
-    const form = new FormData(this);
-    for (let pair of form.entries()) {
-      score += Number(pair[1]);
-    }
-
-    const percent = Math.round((score / total) * 100);
-    const passed = percent >= 70;
-    const xp = score * 15;
-
-    // Сохраняем результат
-    localStorage.setItem('lesson1_score', score);
-    localStorage.setItem('lesson1_total', total);
-    localStorage.setItem('lesson1_percent', percent);
-    localStorage.setItem('lesson1_passed', passed);
-    localStorage.setItem('lesson1_xp', xp);
-    // Переход на страницу результатов
-    window.location.href = '/test/result/?course_title={{ test.course_title }}&lesson_title={{ test.lesson_title }}&title={{ test.title }}';
-
-</script>{% endcomment %}
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 

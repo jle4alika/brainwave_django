@@ -29,7 +29,7 @@ def lesson(request):
     
     test = Course_test.objects.values(
         'title'
-    ).filter(course_title=course_title, number=number).get if Course_test.objects.filter(course_title=course_title, number=number).exists() else None
+    ).filter(course_title=course_title, number=number).get if Course_test.objects.filter(course_title=course_title, number=number).exists() and User_tests.objects.filter(username=request.user, course_title=course_title, state=False, number=number).exists() else None
 
     User_lvls.objects.get_or_create(
         username=request.user,
@@ -44,6 +44,7 @@ def lesson(request):
     )
     
     return render(request, 'lesson.html', context={
+        'image': request.user.image.url if request.user.is_authenticated else None,
         'lesson': lesson,
         'next_lesson': next_lesson,
         'test': test
@@ -51,20 +52,22 @@ def lesson(request):
     
 def tests(request):
     if request.method == 'POST':
-        course_title = request.GET.get('course_title', 'Заголовок не передан')
-        title = request.GET.get('title', 'Заголовок не передан')
-        number = int(request.GET.get('number', 0))
+        course_title = request.POST.get('course_title', 'Заголовок не передан')
+        title = request.POST.get('title', 'Заголовок не передан')
+        number = int(request.POST.get('number', 0))
         
         test = Course_test.objects.values(
             'title',
             'course_title',
             'lesson_title',
+            'number',
             'questions',
             'variant1',
             'variant2',
             'variant3',
             'right_variant'
-        ).filter(course_title=course_title, lesson_title=title, number=number).get() if Course_test.objects.filter(course_title=course_title, lesson_title=title, number=number).exists() else None
+        ).filter(course_title=course_title, number=number).get() if Course_test.objects.filter(course_title=course_title, number=number).exists() else None
+        
         answers = []
         right_answers = []
         
@@ -83,22 +86,27 @@ def tests(request):
         user.exp += exp
         user.save()
 
-        lvls = User_courses.objects.values('lvls').filter(username=request.user).get()['lvls']
-        user_course = User_courses.objects.get(username=request.user)
+        lvls = User_courses.objects.values('lvls').filter(username=request.user, title=course_title).get()['lvls']
+        user_course = User_courses.objects.get(username=request.user, title=course_title)
 
         user_course.passed_lvls += 1 if passed else 0
         user_course.save()
         
-        user_course = User_courses.objects.get(username=request.user)
-        passed_lvls = User_courses.objects.values('passed_lvls').filter(username=request.user).get()['passed_lvls']
+        user_course = User_courses.objects.get(username=request.user, title=course_title)
+        passed_lvls = User_courses.objects.values('passed_lvls').filter(username=request.user, title=course_title).get()['passed_lvls']
+        
         if passed_lvls == lvls:
-            user = User_courses.objects.get(username=request.user)
+            user = User_courses.objects.get(username=request.user, title=course_title)
             user.state = True
             user.save()
         
-        user_course.percent = passed_lvls / lvls * 100
+        user_course.percent = round(passed_lvls / lvls * 100)
         
         user_course.save()
+        
+        user_test = User_tests.objects.get(username=request.user, course_title=test['course_title'], number=test['number'])
+        user_test.state = True if passed else False
+        user_test.save()
         
         lesson = Course_lvl.objects.values(
             'course_title',
@@ -120,6 +128,7 @@ def tests(request):
         
         
         return render(request, 'result.html', context={
+            'image': request.user.image.url,
             'percent': percent,
             'passed': passed,
             'exp': exp,
@@ -184,6 +193,7 @@ def tests(request):
         questions.append(question)
     
     return render(request, 'test.html', context={
+        'image': request.user.image.url if request.user.is_authenticated else None,
         'test': test,
         'questions': questions
     })

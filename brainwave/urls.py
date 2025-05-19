@@ -28,33 +28,59 @@ from categories.views import categories, course
 from courses.views import lesson, tests
 
 def index(request):
-    return render(request, 'home.html')
-
-def achivements(request):
-    user = User.objects.values(
-        'registred_time',
-    ).filter(username=request.user)
-    user = user.get()
-
-    not_passed = Achivement.objects.all()
-
-    
-    passed = User_achivements.objects.filter(username=request.user).get() if User_achivements.objects.filter(username=request.user).exists() else [{'title': 'Первопроходец', 'description': 'Зарегистрироваться и войти в аккаунт', 'exp': 100, 'image': '/media/achievements/shagi.jpg', 'passed_time': user['registred_time']}]
-
-    all_exp_bonus = sum([a['exp'] for a in passed])
-    all_achievements_count = len(not_passed) + 1
-    passed_achievements_count = len(passed)
-    
-    passed_achievements_percent = passed_achievements_count / all_achievements_count * 100
-    return render(request, 'achievements.html', context={
-        'passed': passed,
-        'not_passed': not_passed,
-        'passed_achievements_count': passed_achievements_count,
-        'passed_achievements_percent': passed_achievements_percent,
-        'all_achievements_count': all_achievements_count,
-        'all_exp_bonus': all_exp_bonus
+    return render(request, 'home.html', context={
+        'image': request.user.image.url if request.user.is_authenticated else None,
     })
 
+def achivements(request):
+    if request.user.is_authenticated:
+        user = User.objects.values(
+            'registred_time',
+        ).filter(username=request.user)
+        user = user.get()
+
+        not_passed = [obj for obj in Achivement.objects.all()]
+
+        
+        passed = User_achivements.objects.filter(username=request.user).get() if User_achivements.objects.filter(username=request.user).exists() else [{'title': 'Первопроходец', 'description': 'Зарегистрироваться и войти в аккаунт', 'exp': 100, 'image': '/media/achievements/shagi.jpg', 'passed_time': user['registred_time']}]
+        passed = passed if request.user.is_authenticated else []
+        
+        if len(passed) == 0:
+            not_passed.append({'title': 'Первопроходец', 'description': 'Зарегистрироваться и войти в аккаунт', 'exp': 100, 'image': '/media/achievements/shagi.jpg'})
+        
+        all_exp_bonus = sum([a['exp'] for a in passed])
+        all_achievements_count = len(not_passed) + 1
+        passed_achievements_count = len(passed)
+        
+        passed_achievements_percent = passed_achievements_count / all_achievements_count * 100
+        
+        return render(request, 'achievements.html', context={
+            'image': request.user.image.url if request.user.is_authenticated else None,
+            'passed': passed,
+            'not_passed': not_passed,
+            'passed_achievements_count': passed_achievements_count,
+            'passed_achievements_percent': passed_achievements_percent,
+            'all_achievements_count': all_achievements_count,
+            'all_exp_bonus': all_exp_bonus
+        })
+    else:
+        not_passed = [obj for obj in Achivement.objects.all()]
+        not_passed.append({'title': 'Первопроходец', 'description': 'Зарегистрироваться и войти в аккаунт', 'exp': 100, 'image': '/media/achievements/shagi.jpg'})
+        
+        all_exp_bonus = 0
+        all_achievements_count = len(not_passed)
+        passed_achievements_count = 0
+        passed_achievements_percent = 0
+        
+        return render(request, 'achievements.html', context={
+            'image': request.user.image.url if request.user.is_authenticated else None,
+            'passed': [],
+            'not_passed': not_passed,
+            'passed_achievements_count': passed_achievements_count,
+            'passed_achievements_percent': passed_achievements_percent,
+            'all_achievements_count': all_achievements_count,
+            'all_exp_bonus': all_exp_bonus
+        })
 
 urlpatterns = [
     path('', index, name='home'),

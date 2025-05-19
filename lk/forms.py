@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-
+from django.contrib.auth import authenticate
 from .models import User
 
 class UserRegisterForm(UserCreationForm):
@@ -48,6 +48,16 @@ class UserLoginForm(AuthenticationForm):
     Форма авторизации на сайте
     """
 
+    def clean(self):
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
+
+        if username and password:
+            user = authenticate(username=username, password=password)
+            if user is None:
+                raise forms.ValidationError('Неверный логин или пароль')
+        return super().clean()
+    
     def __init__(self, *args, **kwargs):
         """
         Обновление стилей формы регистрации
